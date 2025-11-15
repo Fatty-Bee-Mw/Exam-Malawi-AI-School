@@ -1,36 +1,71 @@
-# dependencies
+# -----------------------------
+# Node / Frontend dependencies
+# -----------------------------
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# production
+# Build output
 /build
 
-# misc
-.DS_Store
+# -----------------------------
+# Python environment
+# -----------------------------
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# -----------------------------
+# Dataset / embeddings
+# -----------------------------
+# JSONL and merged datasets can be regenerated, no need to track
+*.jsonl
+merged_dataset.json
+embeddings.json
+deploy_embeddings/build/
+
+# -----------------------------
+# Testing
+# -----------------------------
+/coverage
+
+# -----------------------------
+# Environment variables
+# -----------------------------
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# -----------------------------
+# Logs
+# -----------------------------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
 
-# Environment variables
-.env
-
-# IDE
+# -----------------------------
+# IDE / Editor
+# -----------------------------
 .vscode/
 .idea/
 *.swp
 *.swo
 
+# -----------------------------
 # OS
+# -----------------------------
+.DS_Store
 Thumbs.db
 
+# -----------------------------
 # Local Netlify folder
+# -----------------------------
 .netlify
