@@ -1,0 +1,47 @@
+# Small Language Model Training Requirements
+
+# Core ML/AI dependencies
+torch>=2.0.0
+transformers>=4.30.0
+tokenizers>=0.13.0
+accelerate>=0.20.0
+datasets>=2.12.0
+safetensors>=0.3.0
+
+# Text processing
+nltk>=3.8
+spacy>=3.6.0
+regex>=2023.0.0
+
+# File processing
+PyMuPDF>=1.22.0  # For PDF processing
+python-docx>=0.8.11  # For DOCX processing
+Pillow>=9.5.0  # For image processing
+pytesseract>=0.3.10  # For OCR
+
+# GUI
+# tkinter - Usually comes with Python, no need to install
+
+# Data handling
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Utilities
+tqdm>=4.65.0
+pyyaml>=6.0
+click>=8.1.0
+
+# Optional: For better performance
+# bitsandbytes>=0.39.0  # For quantization
+# optimum>=1.10.0       # For optimization
+
+# Development dependencies (optional)
+pytest>=7.3.0
+black>=23.3.0
+flake8>=6.0.0
+
+# System requirements note:
+# - Tesseract OCR must be installed on your system
+#   Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki
+#   Mac: brew install tesseract
+#   Linux: sudo apt-get install tesseract-ocr

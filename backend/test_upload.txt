@@ -1,0 +1,17 @@
+This is a test training file for the Exam AI Malawi system.
+
+Mathematics Questions:
+1. What is 2 + 2?
+Answer: 4
+
+2. What is the square root of 16?
+Answer: 4
+
+English Questions:
+1. What is the past tense of "go"?
+Answer: went
+
+2. What is a noun?
+Answer: A noun is a word that names a person, place, thing, or idea.
+
+This file contains sample educational content for training the AI model.

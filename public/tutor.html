@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Malawian Educational AI Tutor</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --bg-card: #020617;
+        --border: #1e293b;
+        --accent: #22c55e;
+        --accent-soft: rgba(34, 197, 94, 0.1);
+        --text: #e5e7eb;
+        --text-muted: #9ca3af;
+        --error: #f97373;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #1e293b 0, #020617 50%, #000 100%);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+      }
+
+      .page {
+        width: 100%;
+        max-width: 960px;
+        margin: 24px;
+        background: radial-gradient(circle at top left, #020617, #020617 40%, #000 100%);
+        border-radius: 18px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 40px 80px rgba(15, 23, 42, 0.8);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      header {
+        padding: 18px 20px 12px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .title-block {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        background: radial-gradient(circle at 30% 20%, #4ade80, #22c55e 40%, #15803d 70%, #16a34a 100%);
+        box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.6), 0 10px 25px rgba(34, 197, 94, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #022c22;
+        font-weight: 800;
+        font-size: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.03em;
+      }
+
+      .subtitle {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .badge {
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        background: rgba(15, 23, 42, 0.8);
+        color: var(--text-muted);
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 12px 16px 16px;
+        gap: 10px;
+      }
+
+      .notice {
+        font-size: 12px;
+        color: var(--text-muted);
+        padding: 8px 10px;
+        background: rgba(15, 23, 42, 0.8);
+        border-radius: 12px;
+        border: 1px dashed rgba(148, 163, 184, 0.5);
+      }
+
+      .chat-container {
+        flex: 1;
+        min-height: 220px;
+        max-height: 60vh;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background:
+          radial-gradient(circle at top, rgba(34, 197, 94, 0.12), transparent 60%),
+          radial-gradient(circle at bottom, rgba(34, 197, 94, 0.04), transparent 70%),
+          var(--bg-card);
+        padding: 10px 12px;
+        overflow-y: auto;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px 8px;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+
+      .message {
+        margin-bottom: 10px;
+        display: flex;
+        gap: 8px;
+      }
+
+      .message.user {
+        justify-content: flex-end;
+      }
+
+      .bubble {
+        max-width: 80%;
+        padding: 8px 10px;
+        border-radius: 14px;
+        font-size: 13px;
+        line-height: 1.4;
+        white-space: pre-wrap;
+      }
+
+      .message.user .bubble {
+        background: linear-gradient(135deg, #22c55e, #15803d);
+        color: #022c22;
+        border-bottom-right-radius: 4px;
+      }
+
+      .message.assistant .bubble {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        border-bottom-left-radius: 4px;
+      }
+
+      .message.assistant .label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: var(--text-muted);
+        margin-bottom: 2px;
+      }
+
+      .input-area {
+        margin-top: 8px;
+        padding: 10px 12px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.1), transparent 55%),
+          var(--bg-card);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .input-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+      }
+
+      textarea {
+        flex: 1;
+        min-height: 52px;
+        max-height: 120px;
+        resize: vertical;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        background: rgba(15, 23, 42, 0.95);
+        color: var(--text);
+        padding: 8px 10px;
+        font-size: 13px;
+        outline: none;
+      }
+
+      textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.8);
+      }
+
+      button {
+        border: none;
+        border-radius: 999px;
+        padding: 9px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #22c55e, #15803d);
+        color: #022c22;
+        box-shadow: 0 12px 24px rgba(34, 197, 94, 0.45);
+      }
+
+      button:disabled {
+        opacity: 0.65;
+        cursor: default;
+        box-shadow: none;
+      }
+
+      .status-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .dot-pulse {
+        display: inline-flex;
+        gap: 3px;
+        align-items: center;
+      }
+
+      .dot-pulse span {
+        width: 4px;
+        height: 4px;
+        border-radius: 999px;
+        background: var(--accent);
+        opacity: 0.3;
+        animation: pulse 1s infinite ease-in-out;
+      }
+
+      .dot-pulse span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .dot-pulse span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.25;
+        }
+        50% {
+          transform: translateY(-2px);
+          opacity: 1;
+        }
+      }
+
+      .error {
+        color: var(--error);
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          margin: 12px;
+        }
+
+        header {
+          padding: 14px 14px 8px;
+        }
+
+        main {
+          padding: 10px 10px 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="title-block">
+          <div class="logo">MW</div>
+          <div>
+            <h1>Malawian Educational AI Tutor</h1>
+            <p class="subtitle">Grounded in local textbooks and exam papers</p>
+          </div>
+        </div>
+        <div class="badge">Netlify · Groq Llama 3.1</div>
+      </header>
+
+      <main>
+        <div class="notice">
+          Questions are answered using textbook chunks embedded in
+          <code>embeddings.json</code>. If the answer is not in the context, the
+          tutor will say so.
+        </div>
+
+        <div id="chat" class="chat-container">
+          <div class="empty-state">
+            Ask about Biology, Agriculture, Mathematics, Geography, English or
+            other MSCE/JCE topics. The tutor will answer from the uploaded
+            materials.
+          </div>
+        </div>
+
+        <div class="input-area">
+          <div class="input-row">
+            <textarea
+              id="question-input"
+              placeholder="Ask a question, for example: Explain photosynthesis for a Form 2 student..."
+            ></textarea>
+            <button id="ask-button" type="button">Ask</button>
+          </div>
+          <div class="status-line">
+            <div id="status" class="status">Ready</div>
+            <div style="font-size: 11px; color: var(--text-muted);">
+              Backend: <code>/.netlify/functions/ask</code>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const chatEl = document.getElementById("chat");
+      const questionInput = document.getElementById("question-input");
+      const askButton = document.getElementById("ask-button");
+      const statusEl = document.getElementById("status");
+
+      function appendMessage(role, text) {
+        const empty = chatEl.querySelector(".empty-state");
+        if (empty) empty.remove();
+
+        const msg = document.createElement("div");
+        msg.className = `message ${role}`;
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+
+        if (role === "assistant") {
+          const wrapper = document.createElement("div");
+          const label = document.createElement("div");
+          label.className = "label";
+          label.textContent = "Tutor";
+          const content = document.createElement("div");
+          content.textContent = text;
+          wrapper.appendChild(label);
+          wrapper.appendChild(content);
+          bubble.appendChild(wrapper);
+        } else {
+          bubble.textContent = text;
+        }
+
+        msg.appendChild(bubble);
+        chatEl.appendChild(msg);
+        chatEl.scrollTop = chatEl.scrollHeight;
+      }
+
+      function setStatus(text, opts = {}) {
+        const { loading = false, error = false } = opts;
+
+        if (loading) {
+          statusEl.innerHTML = `
+            <span class="dot-pulse"><span></span><span></span><span></span></span>
+            <span>Thinking...</span>
+          `;
+          return;
+        }
+
+        statusEl.textContent = text;
+        statusEl.classList.toggle("error", !!error);
+      }
+
+      async function sendQuestion() {
+        const question = questionInput.value.trim();
+        if (!question) {
+          setStatus("Please type a question.", { error: true });
+          return;
+        }
+
+        questionInput.value = "";
+        questionInput.focus();
+        askButton.disabled = true;
+        setStatus("", { loading: true });
+
+        appendMessage("user", question);
+
+        try {
+          const response = await fetch("/.netlify/functions/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question }),
+          });
+
+          if (!response.ok) {
+            const text = await response.text();
+            throw new Error(`HTTP ${response.status}: ${text}`);
+          }
+
+          const data = await response.json();
+          const answer = data.answer || data.error || "No answer returned.";
+          appendMessage("assistant", answer);
+          setStatus("Ready");
+        } catch (err) {
+          appendMessage("assistant", "There was an error talking to the tutor.");
+          setStatus(String(err.message || err), { error: true });
+        } finally {
+          askButton.disabled = false;
+        }
+      }
+
+      askButton.addEventListener("click", sendQuestion);
+
+      questionInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+          event.preventDefault();
+          sendQuestion();
+        }
+      });
+
+      setStatus("Ready");
+    </script>
+  </body>
+</html>

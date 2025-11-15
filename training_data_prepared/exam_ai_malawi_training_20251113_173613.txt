@@ -1,0 +1,262 @@
+# Exam AI Malawi Training Data
+# Generated on: 2025-11-13T17:36:13.181850
+# Total examples: 15
+
+Question: hie
+Answer: Hello! 👋 I'm your AI study assistant. I can help you with:
+
+📚 **Subjects**: Mathematics, Science, English, History
+❓ **Ask questions** about any topic
+📝 **Generate practice exams**
+💡 **Study tips and explanations**
+
+What would you like to learn about today?
+
+Question: 9 questions remaining today my agent is not working so what to do can we create our own language model that works like chatgpt that we will train it?
+Answer: 🤖 **AI Study Assistant**
+
+I understand you said: '9 questions remaining today my agent is not working so what to do can we create our own language model that works like chatgpt that we will train it?'
+
+I'm your educational AI assistant, specialized in helping with:
+
+📚 **Mathematics** - Calculations, equations, problem solving
+🔬 **Science** - Biology, chemistry, physics concepts
+📖 **English** - Grammar, writing, reading comprehension
+🌍 **Social Studies** - History, geography, civics
+
+Could you ask me a specific question about any of these subjects? For example:
+• 'What is 25 × 4?'
+• 'Explain photosynthesis'
+• 'What is a noun?'
+
+I'm here to help you learn! 🎓
+
+Question: What is a Noun?
+Answer: 📖 **What is a Noun? (Complete Guide)**
+
+**Definition:** A noun is a word that names a person, place, thing, or idea.
+
+🔹 **Types of Nouns with Malawian Examples:**
+
+**1. Common Nouns** (general names):
+• **Person**: mwana (child), aphunzitsi (teacher), dokotala (doctor)
+• **Place**: sukulu (school), nyumba (house), msika (market)
+• **Thing**: buku (book), galimoto (car), chakudya (food)
+
+**2. Proper Nouns** (specific names):
+• **People**: John, Mary, Banda, Phiri
+• **Places**: Lilongwe, Blantyre, Lake Malawi, Malawi
+• **Organizations**: University of Malawi, Bingu Stadium
+
+**3. Abstract Nouns** (ideas/feelings):
+• mtendere (peace), chikondi (love), nzeru (wisdom)
+• ukwati (marriage), ufumu (leadership), umunthu (humanity)
+
+**4. Collective Nouns** (groups):
+• gulu (group), banja (family), anthu (people)
+
+💡 **Quick Test**: Can you put "the", "a", or "an" before it?
+✅ "The teacher" ✅ "A book" ✅ "An apple"
+
+**Practice**: Identify nouns in this sentence:
+"The student read a book about Malawi's history."
+Answer: student, book, Malawi, history (all nouns!)
+
+Question: hie
+Answer: Hello, ylikagwa! 👋 I'm your **Exam AI Malawi** study assistant!
+
+🎓 **I specialize in Malawian education** and can help with:
+
+📚 **Mathematics** - From basic arithmetic to advanced algebra
+🔬 **Science** - Biology, Chemistry, Physics concepts
+📖 **English** - Grammar, writing, literature
+🌍 **Social Studies** - Malawian history, geography, civics
+
+💡 **Just ask me any question!** I'm here to help you succeed in your studies.
+
+Question: help with emglish grammer
+Answer: 📚 **Study Tips from Exam AI Malawi**
+
+**🎯 Effective Study Strategies:**
+
+**1. Create a Study Schedule:**
+• Set specific times for each subject
+• Take breaks every 30-45 minutes
+• Review before sleeping (helps memory)
+
+**2. Active Learning Techniques:**
+• Summarize in your own words
+• Teach concepts to friends/family
+• Create flashcards for key terms
+• Practice past exam questions
+
+**3. Subject-Specific Tips:**
+• **Math**: Practice problems daily, show all work
+• **Science**: Draw diagrams, do experiments
+• **English**: Read daily, practice writing
+• **Social Studies**: Make timelines, use maps
+
+**4. Exam Preparation:**
+• Start reviewing 2 weeks before exams
+• Focus on weak areas first
+• Get enough sleep before exams
+• Stay calm and read questions carefully
+
+**5. Malawian Student Success:**
+• Form study groups with classmates
+• Use both English and Chichewa to understand concepts
+• Connect learning to real life in Malawi
+
+💡 **Remember**: Consistent daily study is better than cramming!
+
+What specific study challenge can I help you with?
+
+Question: What is a Noun?
+Answer: 📖 **What is a Noun? (Complete Guide)**
+
+**Definition:** A noun is a word that names a person, place, thing, or idea.
+
+🔹 **Types of Nouns with Malawian Examples:**
+
+**1. Common Nouns** (general names):
+• **Person**: mwana (child), aphunzitsi (teacher), dokotala (doctor)
+• **Place**: sukulu (school), nyumba (house), msika (market)
+• **Thing**: buku (book), galimoto (car), chakudya (food)
+
+**2. Proper Nouns** (specific names):
+• **People**: John, Mary, Banda, Phiri
+• **Places**: Lilongwe, Blantyre, Lake Malawi, Malawi
+• **Organizations**: University of Malawi, Bingu Stadium
+
+**3. Abstract Nouns** (ideas/feelings):
+• mtendere (peace), chikondi (love), nzeru (wisdom)
+• ukwati (marriage), ufumu (leadership), umunthu (humanity)
+
+**4. Collective Nouns** (groups):
+• gulu (group), banja (family), anthu (people)
+
+💡 **Quick Test**: Can you put "the", "a", or "an" before it?
+✅ "The teacher" ✅ "A book" ✅ "An apple"
+
+**Practice**: Identify nouns in this sentence:
+"The student read a book about Malawi's history."
+Answer: student, book, Malawi, history (all nouns!)
+
+Question: thanks and bye
+Answer: 🤖 **Exam AI Malawi - Your Study Assistant**
+
+I understand you asked: "thanks and bye"
+
+I'm your specialized educational AI for Malawian students! I can help with:
+
+**📚 Core Subjects:**
+• **Mathematics** - From basic arithmetic to advanced topics
+• **English** - Grammar, writing, literature analysis  
+• **Science** - Biology, Chemistry, Physics concepts
+• **Social Studies** - Malawian history, geography, civics
+
+**💡 Study Support:**
+• Homework help and explanations
+• Exam preparation strategies
+• Practice questions and answers
+• Study tips for Malawian students
+
+**🎯 Ask me specific questions like:**
+• "What is a noun?" (English grammar)
+• "How do I solve 2x + 5 = 15?" (Mathematics)
+• "Explain photosynthesis" (Biology)
+• "Tell me about Malawi's independence" (History)
+
+**Ready to help you succeed in your studies!** 🇲🇼📖
+
+What would you like to learn about today?
+
+Question: what is electricity?
+Answer: 🤖 **Exam AI Malawi - Your Study Assistant**
+
+I understand you asked: "what is electricity?"
+
+I'm your specialized educational AI for Malawian students! I can help with:
+
+**📚 Core Subjects:**
+• **Mathematics** - From basic arithmetic to advanced topics
+• **English** - Grammar, writing, literature analysis  
+• **Science** - Biology, Chemistry, Physics concepts
+• **Social Studies** - Malawian history, geography, civics
+
+**💡 Study Support:**
+• Homework help and explanations
+• Exam preparation strategies
+• Practice questions and answers
+• Study tips for Malawian students
+
+**🎯 Ask me specific questions like:**
+• "What is a noun?" (English grammar)
+• "How do I solve 2x + 5 = 15?" (Mathematics)
+• "Explain photosynthesis" (Biology)
+• "Tell me about Malawi's independence" (History)
+
+**Ready to help you succeed in your studies!** 🇲🇼📖
+
+What would you like to learn about today?
+
+Question: What is 15 + 27?
+Answer: To solve 15 + 27, I'll add these numbers step by step:
+15 + 27 = 42
+
+The answer is 42.
+
+Question: How do I find the area of a rectangle?
+Answer: To find the area of a rectangle, use this formula:
+Area = length × width
+
+For example, if a rectangle is 8 meters long and 5 meters wide:
+Area = 8 × 5 = 40 square meters
+
+Question: What is a noun?
+Answer: A noun is a word that names a person, place, thing, or idea.
+
+Examples:
+- Person: teacher, student, doctor
+- Place: school, hospital, Malawi
+- Thing: book, computer, car
+- Idea: happiness, freedom, education
+
+Question: What is the past tense of "go"?
+Answer: The past tense of "go" is "went".
+
+Examples:
+- Present: "I go to school every day"
+- Past: "Yesterday, I went to school"
+
+Question: What is photosynthesis?
+Answer: Photosynthesis is the process plants use to make their own food using sunlight.
+
+The process:
+1. Plants absorb sunlight and carbon dioxide
+2. Roots absorb water from soil
+3. Chlorophyll captures light energy
+4. Plants combine these to make glucose (sugar)
+5. Oxygen is released as waste
+
+This is why plants are green and why we have oxygen to breathe!
+
+Question: When did Malawi gain independence?
+Answer: Malawi gained independence on July 6, 1964, from British colonial rule.
+
+Key facts:
+- Dr. Hastings Kamuzu Banda became the first President
+- The country was formerly called Nyasaland
+- Independence Day is celebrated every July 6th
+- Malawi became a republic in 1966
+
+Question: What are the major cities in Malawi?
+Answer: The major cities in Malawi are:
+
+1. **Lilongwe** - The capital city (since 1975)
+2. **Blantyre** - The commercial center and largest city
+3. **Mzuzu** - Major city in the northern region
+4. **Zomba** - Former capital city
+
+Lilongwe is located in the central region and serves as the political center, while Blantyre in the south is the economic hub.
+

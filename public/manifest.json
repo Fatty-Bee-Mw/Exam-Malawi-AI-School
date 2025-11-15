@@ -1,0 +1,15 @@
+{
+  "short_name": "Exam AI MW",
+  "name": "Exam AI Malawi - AI-Powered Education",
+  "description": "AI-powered exam assistant for Malawian schools and students",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#00d4ff",
+  "background_color": "#0f0f23",
+  "orientation": "portrait-primary",
+  "categories": ["education", "productivity"],
+  "lang": "en",
+  "scope": "/",
+  "prefer_related_applications": false
+}

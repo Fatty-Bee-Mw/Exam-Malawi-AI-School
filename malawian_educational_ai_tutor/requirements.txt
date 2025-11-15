@@ -1,0 +1,11 @@
+faiss-cpu
+sentence-transformers
+transformers
+torch
+fastapi
+uvicorn[standard]
+pydantic
+pypdf
+python-docx
+textract
+requests
