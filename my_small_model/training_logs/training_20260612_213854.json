@@ -1,0 +1,10 @@
+{
+  "training_completed": "2026-06-12T21:38:54.460758",
+  "total_files": 1,
+  "processed_files": 1,
+  "errors": [
+    "Error processing _NOTE_MAKING--_ENGLISH_(1)_(1).pdf: Failed to extract text: PDF extraction failed: Invalid Elementary Object starting with b'~' @355736: b'090 00000 n \\ntrailer~dulla^@204~\\x00/Root 102 0 R\\n>>\\nstartxref\\n353478\\n%%EOF'"
+  ],
+  "start_time": "2026-06-12T21:38:51.348760",
+  "success_rate": 0.0
+}

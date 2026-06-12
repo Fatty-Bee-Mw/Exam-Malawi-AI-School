@@ -115,35 +115,33 @@ class AdminService {
   }
 
   // Validate files before upload
+  async rebuildKnowledgeBase() {
+    return await this.makeRequest('/api/admin/rebuild-knowledge-base', { method: 'POST' });
+  }
+
+  async getKnowledgeStats() {
+    return await this.makeRequest('/api/admin/knowledge-stats');
+  }
+
   validateFiles(files) {
     const errors = [];
-    const maxFileSize = 10 * 1024 * 1024; // 10MB
-    const allowedTypes = [
-      'text/plain',
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    const maxFileSize = 15 * 1024 * 1024; // 15MB
+    const allowedExt = [
+      '.txt', '.pdf', '.doc', '.docx', '.md', '.csv', '.xlsx', '.xls',
+      '.json', '.xml', '.html', '.htm', '.rtf',
+      '.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp',
     ];
 
-    files.forEach((file, index) => {
-      // Check file size
+    files.forEach((file) => {
       if (file.size > maxFileSize) {
-        errors.push(`File ${file.name} is too large (max 10MB)`);
+        errors.push(`File ${file.name} is too large (max 15MB)`);
       }
 
-      // Check file type (relaxed check)
-      const isTextFile = file.name.endsWith('.txt') || 
-                        file.name.endsWith('.md') || 
-                        file.name.endsWith('.csv') ||
-                        file.type.startsWith('text/');
-      
-      const isDocFile = allowedTypes.includes(file.type) || 
-                       file.name.endsWith('.doc') || 
-                       file.name.endsWith('.docx') ||
-                       file.name.endsWith('.pdf');
-
-      if (!isTextFile && !isDocFile) {
-        errors.push(`File ${file.name} type not supported. Use .txt, .pdf, .doc, or .docx files`);
+      const ext = (file.name || '').toLowerCase().match(/\.[^.]+$/)?.[0] || '';
+      if (!allowedExt.includes(ext)) {
+        errors.push(
+          `File ${file.name} not supported. Use PDF, Word, TXT, images, Excel, or HTML.`
+        );
       }
 
       // Check for empty files

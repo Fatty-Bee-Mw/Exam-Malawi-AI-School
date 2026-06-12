@@ -202,7 +202,7 @@ export default function AdminDashboard() {
   // Early return after all hooks
   if (!adminContext || !authContext) {
     return (
-      <div className="min-h-screen bg-dark-primary flex items-center justify-center p-4">
+      <div className="h-full bg-dark-primary flex items-center justify-center p-4">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-dark-neon-blue mx-auto mb-4"></div>
           <p className="text-white">Loading admin dashboard...</p>
@@ -213,7 +213,7 @@ export default function AdminDashboard() {
 
   if (!isUserAdmin) {
     return (
-      <div className="min-h-screen bg-dark-primary flex items-center justify-center p-4">
+      <div className="h-full bg-dark-primary flex items-center justify-center p-4">
         <div className="text-center">
           <ExclamationTriangleIcon className="h-16 w-16 text-red-400 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-white mb-2">Access Denied</h1>
@@ -225,7 +225,7 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-dark-primary flex items-center justify-center p-4">
+      <div className="h-full bg-dark-primary flex items-center justify-center p-4">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-dark-neon-blue mx-auto mb-4"></div>
           <h1 className="text-2xl font-bold text-white mb-2">Loading Admin Dashboard</h1>
@@ -491,7 +491,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-dark-primary p-4 sm:p-6 lg:p-8">
+    <div className="h-full overflow-y-auto bg-dark-primary p-3 sm:p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -824,9 +824,24 @@ export default function AdminDashboard() {
                       ref={fileInputRef}
                       onChange={handleFileChange}
                       multiple
-                      accept=".txt,.pdf,.doc,.docx,.csv,.xlsx,.xls,.json,.xml,.html,.htm,.md,.rtf"
+                      accept=".txt,.pdf,.doc,.docx,.csv,.xlsx,.xls,.json,.xml,.html,.htm,.md,.rtf,.png,.jpg,.jpeg,.gif,.webp"
                       className="hidden"
                     />
+
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        try {
+                          const r = await adminService.rebuildKnowledgeBase();
+                          alert(`Knowledge base rebuilt: ${r.files || 0} file(s) indexed for MANEB Q&A.`);
+                        } catch (e) {
+                          alert(e.message);
+                        }
+                      }}
+                      className="w-full bg-dark-neon-purple/30 hover:bg-dark-neon-purple/50 text-white px-4 py-2 rounded-lg text-sm font-medium mt-2"
+                    >
+                      Rebuild AI knowledge from uploaded materials
+                    </button>
                     
                     {!realTimeTrainingStatus?.is_training && trainingDataList.length > 0 && (
                       <button

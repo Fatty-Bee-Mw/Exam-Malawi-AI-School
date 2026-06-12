@@ -4,7 +4,7 @@ import { ShieldCheckIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-dark-primary py-12 px-4 sm:px-6 lg:px-8">
+    <div className="h-full overflow-y-auto bg-dark-primary py-6 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
         <Link 
           to="/" 

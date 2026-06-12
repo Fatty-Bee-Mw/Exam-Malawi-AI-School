@@ -3,13 +3,16 @@
  * Handles all communication with the FastAPI backend
  */
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
+// In development, use relative URLs (proxied by React dev server)
+// In production, use absolute URL from environment variable
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
 const NETLIFY_TUTOR_FUNCTION_URL =
   process.env.REACT_APP_TUTOR_FUNCTION_URL || '/.netlify/functions/ask';
 
 class AIService {
   constructor() {
     this.baseURL = API_BASE_URL;
+    console.log('AI Service initialized with base URL:', this.baseURL || 'using proxy');
   }
 
   /**
@@ -28,7 +31,10 @@ class AIService {
         options.body = JSON.stringify(data);
       }
 
-      const response = await fetch(`${this.baseURL}${endpoint}`, options);
+      const url = this.baseURL ? `${this.baseURL}${endpoint}` : endpoint;
+      console.log(`Making ${method} request to:`, url);
+      
+      const response = await fetch(url, options);
 
       if (!response.ok) {
         const error = await response.json().catch(() => ({}));
@@ -38,6 +44,12 @@ class AIService {
       return await response.json();
     } catch (error) {
       console.error('API request failed:', error);
+      console.error('Request details:', {
+        endpoint,
+        method,
+        baseURL: this.baseURL,
+        error: error.message
+      });
       throw error;
     }
   }
@@ -106,7 +118,48 @@ class AIService {
    * @param {string} params.user_id - User ID for tracking weaknesses
    */
   async chat(params) {
-    return await this.makeRequest('/api/chat', 'POST', params);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000);
+    try {
+      const response = await fetch(`${this.baseURL}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+        signal: controller.signal,
+      });
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error.detail || error.message || `HTTP ${response.status}`);
+      }
+      return await response.json();
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  async uploadStudyDocuments(userId, files, subject = null) {
+    const formData = new FormData();
+    formData.append('user_id', userId);
+    if (subject) formData.append('subject', subject);
+    files.forEach((file) => formData.append('files', file));
+
+    const response = await fetch(`${this.baseURL}/api/student/upload-documents`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.detail || `Upload failed (${response.status})`);
+    }
+    return response.json();
+  }
+
+  async getStudentDocuments(userId) {
+    return await this.makeRequest(`/api/student/documents/${encodeURIComponent(userId)}`);
+  }
+
+  async getStudentPerformance(userId) {
+    return await this.makeRequest(`/api/student/performance/${encodeURIComponent(userId)}`);
   }
 
   async askTutor(params) {

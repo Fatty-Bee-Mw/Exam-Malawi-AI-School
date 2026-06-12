@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { EyeIcon, EyeSlashIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
+import { safeRender } from '../utils/errorHandler';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -29,10 +30,8 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-primary px-4 sm:px-6 lg:px-8">
-      <div className="absolute inset-0 bg-gradient-radial from-dark-neon-blue/10 via-transparent to-transparent"></div>
-      
-      <div className="relative max-w-md w-full space-y-8">
+    <div className="h-full overflow-y-auto flex items-center justify-center bg-dark-primary px-4 py-6">
+      <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <div className="mx-auto h-16 w-16 bg-gradient-to-r from-dark-neon-blue to-dark-neon-purple rounded-full flex items-center justify-center mb-6">
             <AcademicCapIcon className="h-8 w-8 text-white" />
@@ -41,11 +40,11 @@ export default function Login() {
           <p className="text-gray-400">Sign in to your Exam AI Malawi account</p>
         </div>
 
-        <div className="card-hover p-8 rounded-xl">
+        <div className="card-hover p-6 rounded-xl">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {error && (
               <div className="bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg text-sm">
-                {error}
+                {safeRender(error)}
               </div>
             )}
 

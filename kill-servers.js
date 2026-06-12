@@ -16,7 +16,7 @@ const PORTS = [
   5000, // Flask/Express
   5173, // Vite
   4173, // Vite preview
-  8000, // Python/Django
+  // 8000 — Exam AI FastAPI backend (do not kill; start with npm run start-backend)
   8080, // Alternative HTTP
   8888, // Jupyter
 ];

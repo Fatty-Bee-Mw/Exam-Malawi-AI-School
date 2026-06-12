@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuth } from './AuthContext';
+import { PLAN_LIMITS, FREE_TRIAL_DAYS, getPlanKey } from '../constants/limits';
 
 const UserLimitsContext = createContext();
 
@@ -12,7 +13,9 @@ export function UserLimitsProvider({ children }) {
   const [usage, setUsage] = useState({
     questionsAsked: 0,
     examsGenerated: 0,
-    lastReset: new Date().toDateString()
+    lastReset: new Date().toDateString(),
+    signupDate: null,
+    daysOfFreeUse: 0
   });
 
   // Safe localStorage wrapper
@@ -38,18 +41,24 @@ export function UserLimitsProvider({ children }) {
 
   const limits = {
     free: {
-      questionsPerDay: 10,
-      examsPerDay: 3,
-      features: ['basic questions', 'limited subjects']
+      ...PLAN_LIMITS.free,
+      features: ['basic questions', 'limited subjects'],
+    },
+    freeExtended: {
+      ...PLAN_LIMITS.freeExtended,
+      features: ['basic questions', 'limited subjects'],
     },
     premium: {
-      questionsPerDay: 100,
-      examsPerDay: 20,
-      features: ['unlimited questions', 'all subjects', 'advanced analytics', 'pdf export']
-    }
+      ...PLAN_LIMITS.premium,
+      features: ['unlimited questions', 'all subjects', 'advanced analytics', 'pdf export'],
+    },
   };
 
-  const currentPlan = currentUser?.isPremium ? 'premium' : 'free';
+  const currentPlan = getPlanKey(
+    currentUser?.isPremium,
+    usage.daysOfFreeUse,
+    currentUser?.subscription
+  );
   const currentLimits = limits[currentPlan];
 
   useEffect(() => {
@@ -58,17 +67,38 @@ export function UserLimitsProvider({ children }) {
         const storedUsage = safeLocalStorage.getItem(`usage_${currentUser.id}`);
         if (storedUsage) {
           const parsedUsage = JSON.parse(storedUsage);
+          
+          // Calculate days of free use
+          const signupDate = parsedUsage.signupDate ? new Date(parsedUsage.signupDate) : new Date();
+          const daysSinceSignup = Math.floor((new Date() - signupDate) / (1000 * 60 * 60 * 24));
+          
           if (parsedUsage.lastReset !== new Date().toDateString()) {
             const resetUsage = {
               questionsAsked: 0,
               examsGenerated: 0,
-              lastReset: new Date().toDateString()
+              lastReset: new Date().toDateString(),
+              signupDate: parsedUsage.signupDate || new Date().toISOString(),
+              daysOfFreeUse: daysSinceSignup
             };
             setUsage(resetUsage);
             safeLocalStorage.setItem(`usage_${currentUser.id}`, JSON.stringify(resetUsage));
           } else {
-            setUsage(parsedUsage);
+            setUsage({
+              ...parsedUsage,
+              daysOfFreeUse: daysSinceSignup
+            });
           }
+        } else {
+          // First time user - set signup date
+          const initialUsage = {
+            questionsAsked: 0,
+            examsGenerated: 0,
+            lastReset: new Date().toDateString(),
+            signupDate: new Date().toISOString(),
+            daysOfFreeUse: 0
+          };
+          setUsage(initialUsage);
+          safeLocalStorage.setItem(`usage_${currentUser.id}`, JSON.stringify(initialUsage));
         }
       } catch (error) {
         console.error('Error loading user usage:', error);
@@ -120,7 +150,9 @@ export function UserLimitsProvider({ children }) {
     canGenerateExam,
     getRemainingQuestions,
     getRemainingExams,
-    updateUsage
+    updateUsage,
+    shouldShowUpgradeNotification: currentPlan !== 'premium' && usage.daysOfFreeUse >= FREE_TRIAL_DAYS - 2,
+    daysUntilLimit: Math.max(0, FREE_TRIAL_DAYS - usage.daysOfFreeUse)
   };
 
   return (
