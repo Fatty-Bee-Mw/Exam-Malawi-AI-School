@@ -1,3 +1,6 @@
+# Ignore the entire backend directory
+backend/
+
 # -----------------------------
 # Node / Frontend dependencies
 # -----------------------------
