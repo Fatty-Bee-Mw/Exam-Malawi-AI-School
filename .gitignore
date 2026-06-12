@@ -1,4 +1,14 @@
-# Ignore the entire backend directory
+# -----------------------------
+# Secrets and Environment Variables
+# -----------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+
+# Ignore the entire backend directory (managed as a separate repo)
 backend/
 
 # -----------------------------
@@ -26,7 +36,6 @@ build/
 # -----------------------------
 # Dataset / embeddings
 # -----------------------------
-# JSONL and merged datasets can be regenerated, no need to track
 *.jsonl
 merged_dataset.json
 embeddings.json
@@ -36,15 +45,6 @@ deploy_embeddings/build/
 # Testing
 # -----------------------------
 /coverage
-
-# -----------------------------
-# Environment variables
-# -----------------------------
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # -----------------------------
 # Logs
